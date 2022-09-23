@@ -1,3 +1,10 @@
+<?php 
+if ( !isset($_GET["nama"])){
+    header("Location: latihan1.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +21,7 @@
 <body>
     
         <ul>
-            <li><img src="img/<?= $_GET["gambar"]?>" width="300px"></li>
+            <li><img src="img/<?php echo $_GET['gambar'] ?>" width="300px"></li>
             <li><?= $_GET["nama"]?></li>
             <li><?= $_GET["email"]?></li>
         </ul>
