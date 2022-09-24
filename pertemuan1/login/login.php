@@ -7,7 +7,8 @@
             }
             else{
 
-                $error=true;
+               echo ' <script> alert (" Password salah")</script>';
+                // $error=true;
             }
 
     }
@@ -32,7 +33,7 @@
         
         <?php endif;?>
     <h2> Login admin</h2>
-    <ul>
+    <ul >
     <form action="" method="post">
         <li>
             <label for="username">Username :</label>
