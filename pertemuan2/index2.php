@@ -1,5 +1,5 @@
 <?php 
-    require 'functions.php';
+    require 'funtions.php';
 
   $mahasiswa = query("SELECT * FROM mahasiswa")
 
@@ -15,6 +15,7 @@
 </head>
 <body>
     <h2>Daftar Mahasiswa</h2>
+    <a href="tambah.php">Tambah Data</a>
 
     <table border="1" cellpadding="10" cellspacing="0">
 
@@ -34,7 +35,7 @@
         <td><?php echo $i;?></td>
         <td>
             <a href="">ubah</a>|
-            <a href="">hapus</a>
+          <a href="hapus.php?id=<?= $row["id"]; ?>" >hapus</a>
         </td>
         <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
         <td>

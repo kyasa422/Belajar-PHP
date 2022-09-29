@@ -28,6 +28,8 @@
 <body>
     <h2>Daftar Mahasiswa</h2>
 
+    <a href="tambah.php">Tambah Mahasiswa</a>
+
     <table border="1" cellpadding="10" cellspacing="0">
 
     <tr>
@@ -46,7 +48,7 @@
         <td><?php echo $i;?></td>
         <td>
             <a href="">ubah</a>|
-            <a href="">hapus</a>
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? ');">hapus</a>
         </td>
         <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
         <td>
