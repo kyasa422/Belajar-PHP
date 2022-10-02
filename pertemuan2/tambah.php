@@ -35,34 +35,37 @@ if( isset($_POST["submit"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- //bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
     <title>Tambah Data</title>
 </head>
 <body>
     <h2>Tambah Data Mahasiswa</h2>
 
-    <form action="" method="post">
-        <ul>
-            <li>
-                <label for="nama"> Nama </label>
-                <input type="text" name="nama" id="nama" required>
+    <form action="" method="post" class="form-control form-control-sm" >
+        <ul >
+            <li class="input-group mb-2 ">
+                <label for="nama" class="input-group-text  "> Nama </label>
+                <input type="text" name="nama" id="nama" required class="form-control">
             </li>
-            <li>
-                <label for="nrp"> NRP</label>
-                <input type="text" name="nrp" id="nrp" required>
+            <li class="input-group mb-2">
+                <label for="nrp" class="input-group-text"> NRP</label>
+                <input type="text" name="nrp" id="nrp" required class="form-control">
             </li>
-            <li>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" required>
+            <li class=" input-group mb-2">
+                <label for="email" class="input-group-text">Email</label>
+                <input type="text" name="email" id="email" required class="form-control">
             </li>
-            <li>
-                <label for="">Jurusan</label>
-                <input type="text" name="jurusan" id="jurusan" required>
+            <li class="input-group mb-2">
+                <label for="" class="input-group-text">Jurusan</label>
+                <input type="text" name="jurusan" id="jurusan" required class="form-control">
             </li>
-            <li>
-                <label for="gambar">Gambar</label>
-                <input type="text" name="gambar" id="gambar" required>
+            <li class="input-group mb-2">
+                <label for="gambar" class="input-group-text">Gambar</label>
+                <input type="text" name="gambar" id="gambar" required class="form-control">
             </li>
-            <li> <button type="submit" name="submit"> Tambah Data</button></li>
+             <button type="submit" name="submit" class="btn btn-secondary btn-sm"> Tambah Data</button>
         </ul>
 
     </form>
