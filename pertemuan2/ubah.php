@@ -51,7 +51,7 @@ if( isset($_POST["submit"])){
         <ul>
             <li>
                 <label for="nama"> Nama </label>
-                <input type="text" name="nama" id="nama" required 
+                <input type="text" name="nama" id="nama" required autocomplete="off"
                 value="<?= $mhs["nama"] ?>" >
                 
             </li>

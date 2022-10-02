@@ -1,8 +1,20 @@
 <?php 
-    require 'funtions.php';
+// Koneksi ke database
+  $db = mysqli_connect("localhost","root", "", "phpdasar");
 
-  $mahasiswa = query("SELECT * FROM mahasiswa")
+  // Ambil data dari mahasisawa
 
+  $result = mysqli_query($db, "SELECT * FROM mahasiswa");
+
+  // ambil data ( fetch ) mahasiswa dari object resul
+  // mysqli_fetch_row() mengembalikan array numeric
+  // mysqli_fetch_assoc() Mengembalikan array associative
+  // mysqli_fetch_array() mengembalikan keduanya 
+  // mysqli_fetch_object() mengembalikan object
+
+//   while ($mhs = mysqli_fetch_assoc($result)){
+//   var_dump($mhs);
+//   }
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +27,8 @@
 </head>
 <body>
     <h2>Daftar Mahasiswa</h2>
-    <a href="tambah.php">Tambah Data</a>
+
+    <a href="tambah.php">Tambah Mahasiswa</a>
 
     <table border="1" cellpadding="10" cellspacing="0">
 
@@ -29,13 +42,13 @@
         <th>Jurusan</th>
     </tr>
     <?php $i=1; ?>
-    <?php foreach($mahasiswa as $row) :?>
+    <?php while( $row = mysqli_fetch_assoc($result)) :?>
     <tr>
         
         <td><?php echo $i;?></td>
         <td>
-            <a href="">ubah</a>|
-          <a href="hapus.php?id=<?= $row["id"]; ?>" >hapus</a>
+            <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a>|
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? ');">hapus</a>
         </td>
         <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
         <td>
@@ -54,7 +67,7 @@
 
     </tr>
     <?php $i++;?>
-    <?php endforeach; ?>
+    <?php endwhile; ?>
     </table>
     
 </body>
