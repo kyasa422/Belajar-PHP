@@ -1,29 +1,28 @@
-<?php 
+<?php
 require 'funtions.php';
 
-if( isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
 
- 
+
 
 
 
     //cek data apakah berhasil atau tidak
-     if( tambah($_POST)>0){
-        echo"
+    if (tambah($_POST) > 0) {
+        echo "
         <script>
             alert('data berhasil di tambahkan !');
             document.location.href ='index.php';
         </script>
         ";
-
-     }else{
-         echo"
+    } else {
+        echo "
         <script>
             alert('data gagal di tambahkan !');
             document.location.href ='index.php';
         </script>
         ";
-     }
+    }
 }
 
 
@@ -32,20 +31,22 @@ if( isset($_POST["submit"])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- //bootstrap -->
+    <!-- //bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <title>Tambah Data</title>
-</head> 
+</head>
+
 <body>
     <h2>Tambah Data Mahasiswa</h2>
 
-    <form action="" method="post" enctype="multipart/form-data" class="form-control form-control-sm" >
-        <ul >
+    <form action="" method="post" enctype="multipart/form-data" class="form-control form-control-sm">
+        <ul>
             <li class="input-group mb-2 ">
                 <label for="nama" class="input-group-text  "> Nama </label>
                 <input type="text" name="nama" id="nama" required class="form-control">
@@ -66,9 +67,10 @@ if( isset($_POST["submit"])){
                 <label for="gambar" class="input-group-text">Gambar</label>
                 <input type="file" name="gambar" id="gambar" required class="form-control">
             </li>
-             <button type="submit" name="submit" class="btn btn-secondary btn-sm"> Tambah Data</button>
+            <button type="submit" name="submit" class="btn btn-secondary btn-sm"> Tambah Data</button>
         </ul>
 
     </form>
 </body>
+
 </html>
