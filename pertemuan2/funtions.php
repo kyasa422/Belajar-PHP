@@ -21,7 +21,12 @@
     $email = htmlspecialchars($data["email"]);
      
     $jurusan=htmlspecialchars($data["jurusan"]);
-    $gambar= htmlspecialchars($data["gambar"]);
+
+    //upload 
+    $gambar= upload();
+      if(!$gambar){
+        return false;
+      }
 
          // querry insert data
      $query ="INSERT INTO mahasiswa 
@@ -30,6 +35,48 @@
     mysqli_query($db,$query);
 
     return mysqli_affected_rows($db);
+
+  }
+
+  function upload(){
+    $namaFile =$_FILES['gambar']['name'];
+    $ukuranFile =$_FILES['gambar']['size'];
+    $error =$_FILES['gambar']['error'];
+    $tmpName =$_FILES['gambar']['tmp_name'];
+
+    //cek apakah tidak ada gambar yang di upload
+    if($error === 4){
+
+        echo "<script>
+        alert('Pilih gambar terlebih dahulu');
+        </script>";
+        return false;       
+
+    }
+
+    $ekstensiGambarValid =['jpg','jpeg','png'];
+    $ekstensiGambar = explode('.',$namaFile);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+    if(!in_array($ekstensiGambar,$ekstensiGambarValid)){
+      
+        echo "<script>
+        alert('Yang anda upload bukan gambar');
+        </script>";
+        return false;       
+
+    }
+
+    //jika ukuran terlalu besar
+    if( $ukuranFile >1000000){
+       "<script>
+        alert('size gambar terlalu besar');
+        </script>";
+    }
+
+    // lolos pengecekan, gambar siap du upload
+    move_uploaded_file($tmpName, '../pertemuan1/img/' .$namaFile);
+    return $namaFile;
 
   }
 
