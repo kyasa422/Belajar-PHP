@@ -1,24 +1,24 @@
 <?php
 
 require 'funtions.php';
+if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    if(isset($_POST["login"])){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+    $result = mysqli_query($db, "SELECT * FROM user WHERE username ='$username'");
 
-        $result = mysqli_query($db, "SELECT * FROM user WHERE username ='$username'");
+    // cek usernamenya
+    if (mysqli_num_rows($result) === 1) {
 
-        // cek usernamenya
-        if (mysqli_num_rows($result) === 1 ){
-            
-            //cek password
-            $row= mysqli_fetch_assoc($result);
-            if (password_verify($password,$row["password"])){
-                header("Location: index.php");
-                exit;
-            }
+        //cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            header("Location: index.php");
+            exit;
         }
     }
+    $error = true;
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,27 +28,43 @@ require 'funtions.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <!-- //bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+      
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+    <title>Halaman login</title>
 </head>
 
 <body>
+    <h2>halaman login</h2>
 
-    <form action="" method="post">
-        <ul>
-            <li>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
-            </li>
-            <li>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </li>
-            <li>
-                <button type="submit" name="login">Sign In</button>
-            </li>
-        </ul>
-    </form>
+    <?php if (isset($error)) : ?>
+        <p style="color:crimson; font-style:italic;">username/password salah</p>
 
+    <?php endif; ?>
+
+
+
+  
+        <form action="" method="post" class="w-25 border border-primary mx-auto p-3"  >
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-primary mx-auto" name="login">Sign In</button>
+        </form>
+ 
 </body>
 
 </html>
