@@ -6,15 +6,20 @@
 
   $result = mysqli_query($db, "SELECT * FROM mahasiswa");
 
-  // ambil data ( fetch ) mahasiswa dari object resul
-  // mysqli_fetch_row() mengembalikan array numeric
-  // mysqli_fetch_assoc() Mengembalikan array associative
-  // mysqli_fetch_array() mengembalikan keduanya 
-  // mysqli_fetch_object() mengembalikan object
+    // ambil data ( fetch ) mahasiswa dari object resul
+    // mysqli_fetch_row() mengembalikan array numeric
+    // mysqli_fetch_assoc() Mengembalikan array associative
+    // mysqli_fetch_array() mengembalikan keduanya 
+    // mysqli_fetch_object() mengembalikan object
 
-//   while ($mhs = mysqli_fetch_assoc($result)){
-//   var_dump($mhs);
-//   }
+    //   while ($mhs = mysqli_fetch_assoc($result)){
+    //   var_dump($mhs);
+    //   }
+    session_start();
+    if (!isset($_SESSION["login"])) {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>

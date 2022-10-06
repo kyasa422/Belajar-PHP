@@ -1,6 +1,7 @@
 <?php
 require 'funtions.php';
 
+
 if (isset($_POST["register"])) {
 
     if (registerasi($_POST) > 0) {

@@ -1,7 +1,12 @@
 <?php
 require 'funtions.php';
-
 $mahasiswa = query("SELECT * FROM mahasiswa");
+
+session_start();
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
 
 //jika tombol cari di tekan
 if (isset($_POST["cari"])) {
@@ -30,20 +35,21 @@ if (isset($_POST["cari"])) {
   <nav class="navbar navbar-expand-lg bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php ">
-        <h3 class="text-light">学生名单</h3>
+        <h3 class="text-light me-3 ms-5">学生名单</h3>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active text-light" aria-current="page" href="index.php">Home</a>
-          <a class="nav-link text-light" href="tambah.php">Add Data</a>
+          <a class="nav-link active text-light me-3" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link text-light me-3" href="tambah.php">Add Data</a>
+          <a class="nav-link text-light me-3" href="logout.php">Logout</a>
 
 
-          <form class="d-flex" role="search" action="" method="POST">
-            <input class="form-control me-2" type="search" aria-label="Search" name="keyword" placeholder="输入搜索关键字" autocomplete="off">
-            <button class="btn btn-outline-success text-light" type="submit" name="cari">Search</button>
+          <form class="d-flex ms-5 " role="search" action="" method="POST">
+            <input class="form-control me-3 pe-5 ps-3" type="search" aria-label="Search" name="keyword" placeholder="输入搜索关键字" autocomplete="off">
+            <button class="btn btn-outline-success text-light " type="submit" name="cari">Search</button>
           </form>
 
         </div>

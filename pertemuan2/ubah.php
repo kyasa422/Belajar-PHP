@@ -1,6 +1,12 @@
 <?php
 require 'funtions.php';
 
+session_start();
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
+
 // ambil data dari URL id
 $id = $_GET["id"];
 
