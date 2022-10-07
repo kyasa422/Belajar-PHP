@@ -1,11 +1,27 @@
 <?php
+require 'funtions.php';
 session_start();
+
+// cek cookie
+if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    // ambil username berdasarkan id
+    $result = mysqli_query($db, "SELECT username from user where id =$id");
+    $row = mysqli_fetch_assoc($result);
+
+    // cek cookie dan username sama ngga
+    if ($key === hash('sha256', $row['username'])) {
+        $_SESSION['login'] = true;
+    }
+}
 
 if (isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
-require 'funtions.php';
+
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -21,6 +37,13 @@ if (isset($_POST["login"])) {
 
             //set session
             $_SESSION["login"] = true;
+
+            // cek remember me
+            if (isset($_POST["remember"])) {
+                //buat cookie
+                setcookie('id', $row['id'], time() + 1800);
+                setcookie('key', hash('sha256', $row['username']), time() + 1800);
+            }
 
             header("Location: index.php");
             exit;
@@ -69,8 +92,8 @@ if (isset($_POST["login"])) {
             <input type="password" class="form-control" id="password" name="password">
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+            <label class="form-check-label" for="remember">Remember Me</label>
         </div>
 
         <button type="submit" class="btn btn-primary mx-auto" name="login">Sign In</button>
