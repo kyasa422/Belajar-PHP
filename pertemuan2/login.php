@@ -2,6 +2,11 @@
 require 'funtions.php';
 session_start();
 
+//register
+if ( isset($_POST['daftar'])){
+    header("Location:register.php");
+}
+
 // cek cookie
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $id = $_COOKIE['id'];
@@ -97,6 +102,7 @@ if (isset($_POST["login"])) {
         </div>
 
         <button type="submit" class="btn btn-primary mx-auto" name="login">Sign In</button>
+        <button type="submit" class="btn btn-primary mx-auto" name="daftar">Register</button>
     </form>
 
 </body>
