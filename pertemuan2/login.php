@@ -3,7 +3,7 @@ require 'funtions.php';
 session_start();
 
 //register
-if ( isset($_POST['daftar'])){
+if (isset($_POST['daftar'])) {
     header("Location:register.php");
 }
 
@@ -77,6 +77,7 @@ if (isset($_POST["login"])) {
 
 <body>
     <h2>halaman login</h2>
+
 
     <?php if (isset($error)) : ?>
         <p style="color:crimson; font-style:italic;">username/password salah</p>

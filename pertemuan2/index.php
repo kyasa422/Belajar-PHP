@@ -1,6 +1,16 @@
 <?php
 require 'funtions.php';
-$mahasiswa = query("SELECT * FROM mahasiswa");
+
+$jumlahdataperhalaman = 5;
+$jumlahdata = count(query("SELECT * FROM mahasiswa"));
+$jumlahlaman = ceil($jumlahdata / $jumlahdataperhalaman);
+
+$pageaktip = (isset($_GET["page"])) ? $_GET["page"] : 1;
+$firtsdata =  ($jumlahdataperhalaman * $pageaktip) -$jumlahdataperhalaman;
+
+
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $firtsdata,$jumlahdataperhalaman");
+
 
 session_start();
 if (!isset($_SESSION["login"])) {
@@ -60,13 +70,10 @@ if (isset($_POST["cari"])) {
 
 
 
-  <!-- <form action="" method="POST">
-        
-            <input type="text" name="keyword"placeholder="输入搜索关键字" autocomplete="off">
-            <button type="submit" name="cari"> Search</button> 
-
-        </form> -->
-
+<br>
+<?php for ($i=1; $i <=$jumlahlaman; $i++) : ?>
+    <a href="?page=<?=$i ?>"> <?= $i; ?></a>
+<?php endfor; ?>
 
 
   <table class="table table-striped ">
