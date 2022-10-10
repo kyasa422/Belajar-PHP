@@ -1,12 +1,12 @@
 <?php
 require 'funtions.php';
 
-$jumlahdataperhalaman = 5;
+$jumlahdataperhalaman = 10;
 $jumlahdata = count(query("SELECT * FROM mahasiswa"));
 $jumlahlaman = ceil($jumlahdata / $jumlahdataperhalaman);
 
 $pageaktip = (isset($_GET["page"])) ? $_GET["page"] : 1;
-$firtsdata =  ($jumlahdataperhalaman * $pageaktip) -$jumlahdataperhalaman;
+$firtsdata =  ($jumlahdataperhalaman * $pageaktip) - $jumlahdataperhalaman;
 
 
 $mahasiswa = query("SELECT * FROM mahasiswa LIMIT $firtsdata,$jumlahdataperhalaman");
@@ -56,10 +56,10 @@ if (isset($_POST["cari"])) {
           <a class="nav-link text-light me-3" href="tambah.php">Add Data</a>
           <a class="nav-link text-light me-3" href="logout.php">Logout</a>
 
-
+          <!-- Pencarian -->
           <form class="d-flex ms-5 " role="search" action="" method="POST">
-            <input class="form-control me-3 pe-5 ps-3" type="search" aria-label="Search" name="keyword" placeholder="输入搜索关键字" autocomplete="off">
-            <button class="btn btn-outline-success text-light " type="submit" name="cari">Search</button>
+            <input class="form-control me-3 pe-5 ps-3" type="search" aria-label="Search" name="keyword" placeholder="输入搜索关键字" autocomplete="off" id="keyword">
+            <button class="btn btn-outline-success text-light " type="submit" name="cari" id="tombol-cari">Search</button>
           </form>
 
         </div>
@@ -70,52 +70,54 @@ if (isset($_POST["cari"])) {
 
 
 
-<br>
-<?php for ($i=1; $i <=$jumlahlaman; $i++) : ?>
-    <a href="?page=<?=$i ?>"> <?= $i; ?></a>
-<?php endfor; ?>
+  <br>
+  <?php for ($i = 1; $i <= $jumlahlaman; $i++) : ?>
+    <a href="?page=<?= $i ?>"> <?= $i; ?></a>
+  <?php endfor; ?>
 
+  <div id="container">
+    <table class="table table-striped ">
 
-  <table class="table table-striped ">
-
-    <tr>
-      <th>NO</th>
-      <th>行动</th>
-      <th>图片</th>
-      <th>NIM</th>
-      <th>姓名</th>
-      <th>电子邮件</th>
-      <th>重大的</th>
-    </tr>
-    <?php $i = 1; ?>
-    <?php foreach ($mahasiswa as $row) : ?>
       <tr>
-
-        <td><?php echo $i; ?></td>
-        <td>
-          <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a>|
-          <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? ');">hapus</a>
-        </td>
-        <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
-        <td>
-          <?= $row["nrp"]; ?>
-        </td>
-        <td>
-          <?= $row["nama"]; ?>
-        </td>
-        <td>
-          <?= $row["email"]; ?>
-        </td>
-        <td>
-          <?= $row["jurusan"]; ?>
-        </td>
-
-
+        <th>NO</th>
+        <th>行动</th>
+        <th>图片</th>
+        <th>NIM</th>
+        <th>姓名</th>
+        <th>电子邮件</th>
+        <th>重大的</th>
       </tr>
-      <?php $i++; ?>
-    <?php endforeach; ?>
-  </table>
+      <?php $i = 1; ?>
+      <?php foreach ($mahasiswa as $row) : ?>
+        <tr>
 
+          <td><?php echo $i; ?></td>
+          <td>
+            <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a>|
+            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? ');">hapus</a>
+          </td>
+          <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
+          <td>
+            <?= $row["nrp"]; ?>
+          </td>
+          <td>
+            <?= $row["nama"]; ?>
+          </td>
+          <td>
+            <?= $row["email"]; ?>
+          </td>
+          <td>
+            <?= $row["jurusan"]; ?>
+          </td>
+
+
+        </tr>
+        <?php $i++; ?>
+      <?php endforeach; ?>
+    </table>
+  </div>
+
+  <script src="JS/script.js"></script>
 </body>
 
 </html>
