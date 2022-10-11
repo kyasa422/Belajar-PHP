@@ -1,3 +1,9 @@
+<?php 
+    if( isset($_POST["submit"])): ?>
+        
+       <p>Selamat datang <?= $_POST["nama"]; ?> </p>
+    <?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +13,7 @@
     <title>Post</title>
 </head>
 <body>
-    <?php 
-    if( isset($_POST["submit"])): ?>
-        
-       <p>Selamat datang <?= $_POST["nama"]; ?> </p>
-    <?php endif; ?>
+   
 
 
 

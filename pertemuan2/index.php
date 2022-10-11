@@ -60,6 +60,7 @@ if (isset($_POST["cari"])) {
           <form class="d-flex ms-5 " role="search" action="" method="POST">
             <input class="form-control me-3 pe-5 ps-3" type="search" aria-label="Search" name="keyword" placeholder="输入搜索关键字" autocomplete="off" id="keyword">
             <button class="btn btn-outline-success text-light " type="submit" name="cari" id="tombol-cari">Search</button>
+           
           </form>
 
         </div>

@@ -13,9 +13,7 @@ if ( !isset($_GET["nama"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        li{
-            llist-style-type: circle;
-        }
+   
     </style>
 </head>
 <body>
