@@ -55,7 +55,7 @@
             <a href="ubah.php?id=<?= $row["id"]; ?>">ubah</a>|
             <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus? ');">hapus</a>
         </td>
-        <td><img src="../pertemuan1/img/<?php echo $row["gambar"]; ?>" width="50px"></td>
+        <td><img src="img/<?php echo $row["gambar"]; ?>" width="50px"></td>
         <td>
            <?= $row["nrp"]; ?>
         </td>

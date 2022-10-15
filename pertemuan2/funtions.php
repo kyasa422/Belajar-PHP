@@ -68,7 +68,7 @@ function upload()
 
   //jika ukuran terlalu besar
   if ($ukuranFile > 1000000) {
-        echo "<script>
+    echo "<script>
               alert('size gambar terlalu besar');
               </script>";
   }
@@ -78,7 +78,7 @@ function upload()
   $namaFileBaru = uniqid();
   $namaFileBaru .= '.';
   $namaFileBaru .= $ekstensiGambar;
-  move_uploaded_file($tmpName, '../pertemuan1/img/' . $namaFileBaru);
+  move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
   return $namaFileBaru;
 }
 
@@ -135,36 +135,37 @@ function cari($keyword)
 }
 
 
-function registerasi($data){
-      global$db;
+function registerasi($data)
+{
+  global $db;
 
-      $username = strtolower(stripslashes($data["username"]));
-$password = mysqli_real_escape_string($db,$data["password"]);
+  $username = strtolower(stripslashes($data["username"]));
+  $password = mysqli_real_escape_string($db, $data["password"]);
   $password2 = mysqli_real_escape_string($db, $data["password2"]);
 
-        // cek apakah username sudah ada atau belum 
-        $result = mysqli_query($db, "SELECT username from user WHERE username = '$username'");
-          if( mysqli_fetch_assoc($result)){
-            
-            echo "<script>
+  // cek apakah username sudah ada atau belum 
+  $result = mysqli_query($db, "SELECT username from user WHERE username = '$username'");
+  if (mysqli_fetch_assoc($result)) {
+
+    echo "<script>
                   alert('Username sudah terdaftar');
                   </script>";
-                  return false;
-          }
+    return false;
+  }
 
-        //cek konfirmasi password
-        if ($password !== $password2){
-          echo "<script>
+  //cek konfirmasi password
+  if ($password !== $password2) {
+    echo "<script>
                     alert('Password tidak sesuai');
                     </script>";
-            return false;
-        }
-        // enckripsi password
-          $password = password_hash($password, PASSWORD_DEFAULT);
+    return false;
+  }
+  // enckripsi password
+  $password = password_hash($password, PASSWORD_DEFAULT);
 
 
-        //tambahkan userbaru ke database
-        mysqli_query($db,"INSERT INTO user VALUES('','$username','$password')"); 
+  //tambahkan userbaru ke database
+  mysqli_query($db, "INSERT INTO user VALUES('','$username','$password')");
 
-        return mysqli_affected_rows($db); 
+  return mysqli_affected_rows($db);
 }
