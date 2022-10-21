@@ -16,7 +16,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
@@ -52,7 +52,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
 
 
-    <div id="container" class="text-center" >
+    <div id="container"  >
         <table class="table table-striped ">
 
             <tr>
@@ -93,6 +93,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                         <?= ceil($result); ?>
                     </td>
                     <td>
+                    <a href="update.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>"><i class="bi bi-pencil-square"></i></a>|
                     <a href="delete.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>;"><i class="bi bi-trash-fill"></i></a>
                     </td>
 

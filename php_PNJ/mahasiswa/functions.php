@@ -40,4 +40,27 @@ function hapus($id)
   mysqli_query($db, "DELETE FROM mahasiswa where id_mahasiswa=$id");
   return mysqli_affected_rows($db);
 }
-?>
+
+
+function update($data)
+{
+  global $db;
+  $id = $data["id_mahasiswa"];
+  $nama = htmlspecialchars($data["nama"]);
+  $nim = htmlspecialchars($data["nim"]);
+  $tugas = htmlspecialchars($data["tugas"]);
+  $uts = htmlspecialchars($data["uts"]);
+  $uas = htmlspecialchars($data["uas"]);
+
+  $query = "UPDATE  mahasiswa SET
+                    nama = '$nama',
+                    nim = '$nim',
+                    tugas ='$tugas',
+                    uts ='$uts',
+                    uas ='$uas'
+                    WHERE id_mahasiswa = $id ";
+  mysqli_query($db, $query);
+  return mysqli_affected_rows($db);
+}
+
+
