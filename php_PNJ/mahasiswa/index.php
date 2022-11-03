@@ -1,12 +1,25 @@
 <?php
 require 'functions.php';
-$mahasiswa = query("SELECT * FROM mahasiswa");
+
+$jumlahdataperhalaman = 5;
+$jumlahdata = count(query("SELECT * FROM mahasiswa"));
+$jumlahlaman = ceil($jumlahdata / $jumlahdataperhalaman);
+
+$pageaktip = (isset($_GET["page"])) ? $_GET["page"] : 1;
+$firtsdata =  ($jumlahdataperhalaman * $pageaktip) - $jumlahdataperhalaman;
+
+
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $firtsdata,$jumlahdataperhalaman");
 
 // if($db === false ){
 //     die.(mysqli_connect_error());
 // }else{
 //     echo"nice";
 // }
+if (isset($_POST["cari"])) {
+
+    $mahasiswa = cari($_POST["keyword"]);
+}
 
 
 ?>
@@ -23,27 +36,33 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.php ">
-        <h3 class="text-light me-3 ms-5">Mahasiswa</h3>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active text-light me-3" aria-current="page" href="index.php">Home</a>
-          <a class="nav-link text-light me-3" href="addData.php">Add Data</a>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php ">
+                <h3 class="text-light me-3 ms-5">Mahasiswa</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active text-light me-3" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link text-light me-3" href="addData.php">Add Data</a>
 
-           
-          
+
+                    <form class="d-flex" role="search" action="" method="post">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autofocus name="keyword">
+                        <button class="btn btn-outline-success" type="submit" name="cari">Search</button>
+                    </form>
+
+
+
+
+                </div>
+            </div>
 
         </div>
-      </div>
-    </div>
-  </nav>
- 
+    </nav>
 
 
 
@@ -52,7 +71,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
 
 
-    <div id="container"  >
+
+    <div id="container">
         <table class="table table-striped ">
 
             <tr>
@@ -93,8 +113,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                         <?= ceil($result); ?>
                     </td>
                     <td>
-                    <a href="update.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>"><i class="bi bi-pencil-square"></i></a>|
-                    <a href="delete.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>;"><i class="bi bi-trash-fill"></i></a>
+                        <a href="update.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>"><i class="bi bi-pencil-square"></i></a>|
+                        <a href="delete.php?id_mahasiswa=<?= $row["id_mahasiswa"]; ?>;"><i class="bi bi-trash-fill"></i></a>
                     </td>
 
 
@@ -102,8 +122,11 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                 <?php $i++; ?>
             <?php endforeach; ?>
         </table>
-    </div>
 
+    </div>
+    <?php for ($i = 1; $i <= $jumlahlaman; $i++) : ?>
+        <a href="?page=<?= $i ?>" class="ms-4"> <?= $i; ?></a>
+    <?php endfor; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
