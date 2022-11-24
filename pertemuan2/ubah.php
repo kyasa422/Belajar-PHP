@@ -3,8 +3,8 @@ require 'funtions.php';
 
 session_start();
 if (!isset($_SESSION["login"])) {
-  header("Location: login.php");
-  exit;
+    header("Location: login.php");
+    exit;
 }
 
 // ambil data dari URL id
@@ -77,6 +77,10 @@ if (isset($_POST["submit"])) {
             <li class="input-group mb-2">
                 <label for="" class="input-group-text">Jurusan</label>
                 <input class="form-control" type="text" name="jurusan" id="jurusan" required value="<?= $mhs["jurusan"] ?>">
+            </li>
+            <li class="input-group mb-2">
+                <label for="nilai" class="input-group-text">Nilai</label>
+                <input class="form-control" type="text" name="nilaiuas" id="nilai" required value="<?= $mhs["nilaiuas"] ?>">
             </li>
             <li class="input-group mb-2">
                 <label for="gambar" class="input-group-text">Gambar</label>

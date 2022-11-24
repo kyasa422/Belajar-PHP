@@ -102,6 +102,7 @@ function ubah($data)
   $email = htmlspecialchars($data["email"]);
   $jurusan = htmlspecialchars($data["jurusan"]);
   $gambarLama = htmlspecialchars($data["gambarlama"]);
+  $nilai = htmlspecialchars($data["nilaiuas"]);
 
   // cek apakah user memilih gambar baru atau tidak
   if ($_FILES['gambar']['error'] === 4) {
@@ -115,7 +116,8 @@ function ubah($data)
                     nrp = '$nrp',
                     email ='$email',
                     jurusan ='$jurusan',
-                    gambar ='$gambar'
+                    gambar ='$gambar',
+                    nilaiuas ='$nilai'
                     where id=$id";
   mysqli_query($db, $query);
   return mysqli_affected_rows($db);
@@ -140,6 +142,7 @@ function registerasi($data)
   global $db;
 
   $username = strtolower(stripslashes($data["username"]));
+  $email = $data["email"];
   $password = mysqli_real_escape_string($db, $data["password"]);
   $password2 = mysqli_real_escape_string($db, $data["password2"]);
 
@@ -165,7 +168,7 @@ function registerasi($data)
 
 
   //tambahkan userbaru ke database
-  mysqli_query($db, "INSERT INTO user VALUES('','$username','$password')");
+  mysqli_query($db, "INSERT INTO user VALUES('','$username','$password','$email')");
 
   return mysqli_affected_rows($db);
 }

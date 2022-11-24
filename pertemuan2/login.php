@@ -31,7 +31,7 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($db, "SELECT * FROM user WHERE username ='$username'");
+    $result = mysqli_query($db, "SELECT * FROM user WHERE username ='$username' OR email ='$username'");
 
     // cek usernamenya
     if (mysqli_num_rows($result) === 1) {
@@ -89,7 +89,7 @@ if (isset($_POST["login"])) {
 
     <form action="" method="post" class="w-25 border border-primary mx-auto p-3">
         <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
+            <label for="username" class="form-label">Username / Email</label>
             <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
             <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>

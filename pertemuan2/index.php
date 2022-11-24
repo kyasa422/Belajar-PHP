@@ -54,6 +54,7 @@ if (isset($_POST["cari"])) {
         <div class="navbar-nav">
           <a class="nav-link active text-light me-3" aria-current="page" href="index.php">Home</a>
           <a class="nav-link text-light me-3" href="tambah.php">Add Data</a>
+          <a class="nav-link text-light me-3" href="ViewChart.php">ViewChart</a>
           <a class="nav-link text-light me-3" href="logout.php">Logout</a>
 
           <!-- Pencarian -->
@@ -87,6 +88,7 @@ if (isset($_POST["cari"])) {
         <th>姓名</th>
         <th>电子邮件</th>
         <th>重大的</th>
+        <th>分数</th>
       </tr>
       <?php $i = 1; ?>
       <?php foreach ($mahasiswa as $row) : ?>
@@ -109,6 +111,9 @@ if (isset($_POST["cari"])) {
           </td>
           <td>
             <?= $row["jurusan"]; ?>
+          </td>
+          <td>
+            <?= $row["nilaiuas"]; ?>
           </td>
 
 
